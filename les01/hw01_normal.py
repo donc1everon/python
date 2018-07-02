@@ -10,6 +10,24 @@ __author__ = 'Антонов Илья Юрьевич'
 # * постарайтесь решить задачу с применением арифметики и цикла while;
 # * при желании и понимании решите задачу с применением цикла for.
 
+print("Exercise #1:")
+number = input('Введите целое число: ')
+length = len(number)
+n = int(number)
+i = 0
+max_num = 0
+list_number = []
+while n != 0:
+   n = n%10
+   list_number.insert(0, n)
+   n = n//10
+
+while i < len(list_number):
+    if max_num < list_number[i]:
+        max_num = list_number[i]
+    i += 1
+print('В числе - ', number, ', максимальная цифра', max_num)
+
 
 # Задача-2: Исходные значения двух переменных запросить у пользователя.
 # Поменять значения переменных местами. Вывести новые значения на экран.
