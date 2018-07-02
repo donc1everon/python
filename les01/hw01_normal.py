@@ -10,23 +10,23 @@ __author__ = 'Антонов Илья Юрьевич'
 # * постарайтесь решить задачу с применением арифметики и цикла while;
 # * при желании и понимании решите задачу с применением цикла for.
 
-# print("Exercise #1:")
-# number = input('Введите целое число: ')
-# length = len(number)
-# n = int(number)
-# i = 0
-# max_num = 0
-# list_number = []
-# while n != 0:
-#    n = n%10
-#    list_number.insert(0, n)
-#    n = n//10
-#
-# while i < len(list_number):
-#     if max_num < list_number[i]:
-#         max_num = list_number[i]
-#     i += 1
-# print('В числе - ', number, ', максимальная цифра', max_num)
+print("Exercise #1:")
+number = input('Введите целое число: ')
+length = len(number)
+n = int(number)
+i = 0
+max_num = 0
+list_number = []
+while n != 0:
+   n = n%10
+   list_number.insert(0, n)
+   n = n//10
+
+while i < len(list_number):
+    if max_num < list_number[i]:
+        max_num = list_number[i]
+    i += 1
+print('В числе - ', number, ', максимальная цифра', max_num)
 
 
 # Задача-2: Исходные значения двух переменных запросить у пользователя.
@@ -36,26 +36,26 @@ __author__ = 'Антонов Илья Юрьевич'
 # * постарайтесь сделать решение через действия над числами;
 # * при желании и понимании воспользуйтесь синтаксисом кортежей Python.
 
-# print("Exercise #2:")
-# # кортеж
-# a = input("Введите первую переменную a: ")
-# b = input("Введите вторую переменную b: ")
-#
-# a,b = b,a
-#
-# print('a = ', a)
-# print('b = ', b)
-#
-# # действия над числами
-# a = int(input("Введите первую переменную a: "))
-# b = int(input("Введите вторую переменную b: "))
-#
-# a = a + b
-# b = a - b
-# a = a - b
-#
-# print('a = ', a)
-# print('b = ', b)
+print("Exercise #2:")
+# кортеж
+a = input("Введите первую переменную a: ")
+b = input("Введите вторую переменную b: ")
+
+a,b = b,a
+
+print('a = ', a)
+print('b = ', b)
+
+# действия над числами
+a = int(input("Введите первую переменную a: "))
+b = int(input("Введите вторую переменную b: "))
+
+a = a + b
+b = a - b
+a = a - b
+
+print('a = ', a)
+print('b = ', b)
 
 # Задача-3: Напишите программу, вычисляющую корни квадратного уравнения вида
 # ax² + bx + c = 0.
