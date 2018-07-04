@@ -18,6 +18,7 @@ print("Задача №", n)
 
 list_1 = ["яблоко", "банан", "киви", "арбуз", "апельсин", "мандарин"]
 i = 0
+
 for fruit in list_1:
     print(i+1, ". {}".format(list_1[i]))
     i += 1
@@ -71,7 +72,17 @@ n += 1
 print("Задача №", n)
 
 
+random_list = [98, 6587, 4, 7, 12, 6554, 123565]
+i = 0
 
+for num in random_list:
+    if num % 2 == 0:
+        random_list[i] = num / 4
+    else:
+        random_list[i] = num * 2
+    i += 1
+
+print(random_list)
 
 
 print("Задача № {} решена!!".format(n))
