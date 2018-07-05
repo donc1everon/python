@@ -111,9 +111,49 @@ ex += 1
 print("Задача №", ex)
 
 
+some_lst = [1, 2, 4, 5, 6, 2, 5, 2]
+new_lst_a = []
+new_lst_b = []
 
+# a)
+# new_lst_a = some_lst
+# for num in some_lst:
+#     i = 0
+#     repeat = 0
+#     while i < len(some_lst):
+#         if num == some_lst[i]:
+#             repeat += 1
+#             if repeat > 1:
+#                 new_lst_a.pop(i)
+#         i += 1
 
+# b)
+# for num in some_lst:
+#     i = 0
+#     repeat = 0
+#     while i < len(some_lst):
+#         if num == some_lst[i]:
+#             repeat += 1
+#         i += 1
+#     if repeat == 1:
+#         new_lst_b.append(num)
+
+# a + b
+new_lst_a = some_lst
+for num in some_lst:
+    i = 0
+    repeat = 0
+    while i < len(some_lst):
+        if num == some_lst[i]:
+            repeat += 1
+            if repeat > 1:
+                new_lst_a.pop(i)        # не пойму почему он также режет основной список some_list?
+        i += 1
+    if repeat == 1:
+        new_lst_b.append(num)
+
+print(new_lst_a)
+print(new_lst_b)
 
 print("Задача № {} решена!!".format(ex))
-print(" ")
-ex += 1
+
