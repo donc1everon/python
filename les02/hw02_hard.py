@@ -25,12 +25,52 @@ print("Координаты точки y =", y)
 #  (т.е. 2 символа для дня, 2 - для месяца, 4 - для года)
 
 # Пример корректной даты
-date = '01.11.1985'
+# date = '01.11.1985'
 
 # Примеры некорректных дат
-date = '01.22.1001'
-date = '1.12.1001'
-date = '-2.10.3001'
+# date = '01.22.1001'
+# date = '1.12.1001'
+# date = '-2.10.3001'
+
+month_30 = [2, 4, 6, 9, 11]
+date = input("Введите дату в формате 'dd.mm.yyyy': ")
+
+# проверяем формат даты и корректность 4го пункта
+true_format = re.findall(r'\d{2}\.\d{2}\.\d{4}', date)
+if len(true_format) == 0:
+    print("Вы ввели некорректную дату!")
+elif len(date) != 10:
+    print("Вы ввели некорректную дату!!")
+else:
+    date_list = re.findall(r'(\d{2})\.\d{2}\.\d{4}', date) + re.findall(r'\d{2}\.(\d{2})\.\d{4}', date) + \
+               re.findall(r'\d{2}\.\d{2}\.(\d{4})', date)
+    day = int(date_list[0])
+    month = int(date_list[1])
+    year = int(date_list[2])
+
+    # проверяем на корректность 1 пункт и 2 пункт
+    for m in month_30:
+        if 0 < month <= 12:
+            if 0 < day < 31:
+                if month == m:
+                    continue
+            elif day == 31:
+                if month != m:
+                    continue
+                else:
+                    print("Числа", day, "в месяце", month, "нет!")
+            else:
+                print("дата введена не правильнО!")
+                break
+        else:
+            print("месяц введен не правильнО!")
+            break
+
+    # проверяем на корректность 3 пункт
+    if not year > 0 or year > 2999:
+            print("год введене не верно")
+
+    print("Введенная дата верного формата:", date)
 
 
 # Задание-3: "Перевёрнутая башня" (Задача олимпиадного уровня)
