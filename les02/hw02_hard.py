@@ -32,8 +32,10 @@ print("Координаты точки y =", y)
 # date = '1.12.1001'
 # date = '-2.10.3001'
 
-month_30 = [2, 4, 6, 9, 11]
+
 date = input("Введите дату в формате 'dd.mm.yyyy': ")
+month_30 = [2, 4, 6, 9, 11]
+error = 0
 
 # проверяем формат даты и корректность 4го пункта
 true_format = re.findall(r'\d{2}\.\d{2}\.\d{4}', date)
@@ -48,7 +50,7 @@ else:
     month = int(date_list[1])
     year = int(date_list[2])
 
-    # проверяем на корректность 1 пункт и 2 пункт
+    # проверяем на корректность 1 и 2 пункты
     for m in month_30:
         if 0 < month <= 12:
             if 0 < day < 31:
@@ -58,19 +60,27 @@ else:
                 if month != m:
                     continue
                 else:
+                    error += 1
                     print("Числа", day, "в месяце", month, "нет!")
             else:
+                error += 1
                 print("дата введена не правильнО!")
                 break
         else:
+            error += 1
             print("месяц введен не правильнО!")
             break
-
     # проверяем на корректность 3 пункт
-    if not year > 0 or year > 2999:
-            print("год введене не верно")
 
-    print("Введенная дата верного формата:", date)
+    if not year > 0 or year > 2999:
+           error += 1
+           print("год введене не верно")
+
+    if error == 0:
+        print("Введенная дата верного формата:", date)
+
+
+
 
 
 # Задание-3: "Перевёрнутая башня" (Задача олимпиадного уровня)
@@ -102,3 +112,34 @@ else:
 #
 # Вход: 11
 # Выход: 5 3
+
+room = int(input("enter room #: "))
+
+room_lst = list(range(1, room+1))
+all_room = 0
+num_s = 0
+cur_s = 1
+stage = 0
+stage_s = 1
+position = 0
+
+# определяем номер квадрата, в котором комната
+while all_room < room:
+    all_room += room_lst[num_s]**2
+    num_s += 1
+# находим сколько этажей всего
+s_lst = list(range(1, num_s+1))
+# определяем позицию элемента на этаже
+position = num_s**2 - (all_room - room)
+while position > num_s:
+    position -= num_s
+    stage_s += 1
+
+# определяем номер этажа
+while cur_s < num_s:
+    stage += s_lst[cur_s-1]
+    cur_s += 1
+stage += stage_s
+
+
+print("Этаж №:", stage, "\nПозиция слева №:", position)
