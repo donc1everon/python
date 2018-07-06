@@ -127,7 +127,7 @@ position = 0
 while all_room < room:
     all_room += room_lst[num_s]**2
     num_s += 1
-# находим сколько этажей всего
+
 s_lst = list(range(1, num_s+1))
 # определяем позицию элемента на этаже
 position = num_s**2 - (all_room - room)
