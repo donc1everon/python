@@ -1,10 +1,18 @@
+import re
+
 # Задание-1: уравнение прямой вида y = kx + b задано в виде строки.
 # Определить координату y точки с заданной координатой x.
 
 equation = 'y = -12x + 11111140.2121'
 x = 2.5
+k = re.findall(r'(.\d+)x', equation)
+k = float(k[0])
+b = re.findall(r'\d+.\d+', equation)
+b = float(b[0])
 # вычислите и выведите y
+y = k*x + b
 
+print("Координаты точки y =", y)
 
 # Задание-2: Дата задана в виде строки формата 'dd.mm.yyyy'.
 # Проверить, корректно ли введена дата.
@@ -17,12 +25,62 @@ x = 2.5
 #  (т.е. 2 символа для дня, 2 - для месяца, 4 - для года)
 
 # Пример корректной даты
-date = '01.11.1985'
+# date = '01.11.1985'
 
 # Примеры некорректных дат
-date = '01.22.1001'
-date = '1.12.1001'
-date = '-2.10.3001'
+# date = '01.22.1001'
+# date = '1.12.1001'
+# date = '-2.10.3001'
+
+
+date = input("Введите дату в формате 'dd.mm.yyyy': ")
+month_30 = [2, 4, 6, 9, 11]
+error = 0
+
+# проверяем формат даты и корректность 4го пункта
+true_format = re.findall(r'\d{2}\.\d{2}\.\d{4}', date)
+if len(true_format) == 0:
+    print("Вы ввели некорректную дату!")
+elif len(date) != 10:
+    print("Вы ввели некорректную дату!!")
+else:
+    date_list = re.findall(r'(\d{2})\.\d{2}\.\d{4}', date) + re.findall(r'\d{2}\.(\d{2})\.\d{4}', date) + \
+               re.findall(r'\d{2}\.\d{2}\.(\d{4})', date)
+    day = int(date_list[0])
+    month = int(date_list[1])
+    year = int(date_list[2])
+
+    # проверяем на корректность 1 и 2 пункты
+    for m in month_30:
+        if 0 < month <= 12:
+            if 0 < day < 31:
+                if month == m:
+                    continue
+            elif day == 31:
+                if month != m:
+                    continue
+                else:
+                    error += 1
+                    print("Числа", day, "в месяце", month, "нет!")
+            else:
+                error += 1
+                print("дата введена не правильнО!")
+                break
+        else:
+            error += 1
+            print("месяц введен не правильнО!")
+            break
+    # проверяем на корректность 3 пункт
+
+    if not year > 0 or year > 2999:
+           error += 1
+           print("год введене не верно")
+
+    if error == 0:
+        print("Введенная дата верного формата:", date)
+
+
+
 
 
 # Задание-3: "Перевёрнутая башня" (Задача олимпиадного уровня)
@@ -54,3 +112,34 @@ date = '-2.10.3001'
 #
 # Вход: 11
 # Выход: 5 3
+
+room = int(input("enter room #: "))
+
+room_lst = list(range(1, room+1))
+all_room = 0
+num_s = 0
+cur_s = 1
+stage = 0
+stage_s = 1
+position = 0
+
+# определяем номер квадрата, в котором комната
+while all_room < room:
+    all_room += room_lst[num_s]**2
+    num_s += 1
+
+s_lst = list(range(1, num_s+1))
+# определяем позицию элемента на этаже
+position = num_s**2 - (all_room - room)
+while position > num_s:
+    position -= num_s
+    stage_s += 1
+
+# определяем номер этажа
+while cur_s < num_s:
+    stage += s_lst[cur_s-1]
+    cur_s += 1
+stage += stage_s
+
+
+print("Этаж №:", stage, "\nПозиция слева №:", position)
