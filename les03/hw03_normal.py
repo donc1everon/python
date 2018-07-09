@@ -27,7 +27,20 @@ print(fibonacci(n, m))
 
 
 def sort_to_max(origin_list):
-    pass
+    sort_lst = []
+    print(len(origin_list))
+    while len(origin_list) != 0:
+        for el in origin_list:
+            i = 0
+            min_el = el
+            for el_1 in origin_list:
+                if (el >= el_1) & (min_el >= el_1):
+                    min_el = el_1
+                    del_el = i
+                i += 1
+            sort_lst.append(min_el)
+            origin_list.pop(del_el)
+    print(sort_lst)
 
 sort_to_max([2, 10, -12, 2.5, 20, -11, 4, 4, 0])
 
