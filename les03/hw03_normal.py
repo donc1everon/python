@@ -1,10 +1,25 @@
 # Задание-1:
 # Напишите функцию, возвращающую ряд Фибоначчи с n-элемента до m-элемента.
 # Первыми элементами ряда считать цифры 1 1
+n = int(input("n "))
+m = int(input("m "))
 
 def fibonacci(n, m):
-    pass
+    i = 1
+    row_fibanacci = [1, 1]
+    if n > m:
+        return print("Не верный список!")
+    while m != i:
+        i += 1
+        row_fibanacci.append(0)
+        row_fibanacci[i] = row_fibanacci[i-1] + row_fibanacci[i-2]
+        print(row_fibanacci)
+    while n > 0:
+        n -= 1
+        row_fibanacci.pop(n)
+    return row_fibanacci
 
+print(fibonacci(n, m))
 # Задача-2:
 # Напишите функцию, сортирующую принимаемый список по возрастанию.
 # Для сортировки используйте любой алгоритм (например пузырьковый).
