@@ -13,7 +13,6 @@ def fibonacci(n, m):
         i += 1
         row_fibanacci.append(0)
         row_fibanacci[i] = row_fibanacci[i-1] + row_fibanacci[i-2]
-        print(row_fibanacci)
     while n > 0:
         n -= 1
         row_fibanacci.pop(n)
@@ -28,7 +27,6 @@ print(fibonacci(n, m))
 
 def sort_to_max(origin_list):
     sort_lst = []
-    print(len(origin_list))
     while len(origin_list) != 0:
         for el in origin_list:
             i = 0
