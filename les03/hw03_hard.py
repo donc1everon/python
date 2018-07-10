@@ -17,6 +17,52 @@
 # то их ЗП уменьшается пропорционально, а за заждый час переработки
 # они получают удвоенную ЗП, пропорциональную норме.
 # Кол-во часов, которые были отработаны, указаны в файле "data/hours_of"
+import re
+import os
+
+worker_lst = []
+w_fio = []
+hour_lst = []
+h_fio = []
+cost_work = []
+price = []
+w_txt = os.path.join('data', 'workers.txt')
+h_txt = os.path.join('data', 'hours_of.txt')
+i = 0
+
+def read_file(file, lst, lst_for_fio):
+    # читаем данные из файла и передаём в список по-линейно
+    with open(file, 'r', encoding='UTF-8') as f:
+        for line in f:
+            lst.append(re.findall(r'[А-я]+[А-я]+|[0-9]+', line))
+    lst[0:] = lst[1:]
+    lst.sort()
+    # объединяем Имя и Фамилию в одну графу
+    for f in lst:
+        f[0] += " " + f[1]
+        f.pop(1)
+        lst_for_fio.append(f[0])
+
+
+read_file(w_txt, worker_lst, w_fio)
+read_file(h_txt, hour_lst, h_fio)
+
+while i < len(worker_lst):
+    salary = int(worker_lst[i][1])
+    norm_h = int(worker_lst[i][3])
+    work_h = int(hour_lst[i][1])
+
+    cost_work.append(i)
+    price.append(i)
+    cost_work[i] = norm_h - work_h
+
+    if cost_work[i] > 0:
+        price[i] = round((salary + (2 * (salary / norm_h) * cost_work[i])),2)
+        print(worker_lst[i][0], 'заработал в этом месяце -', price[i])
+    else:
+        price[i] = round((salary + (salary / norm_h) * cost_work[i]), 2)
+        print(worker_lst[i][0], 'заработал в этом месяце -', price[i])
+    i += 1
 
 
 # Задание-3:
