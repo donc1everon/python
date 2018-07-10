@@ -19,7 +19,6 @@ def fibonacci(n, m):
         row_fibanacci.pop(n)
     return row_fibanacci
 
-
 print(fibonacci(n, m))
 
 
