@@ -50,7 +50,7 @@ print('Символы в нижнем регистре БЕЗ помоще re -'
 print('\n', 'Задание-2:\n'.center(55))
 # Вывести символы в верхнем регистре, слева от которых находятся
 # два символа в нижнем регистре, а справа - два символа в верхнем регистре.
-# Т.е. из строки 
+# Т.е. из строки
 # "GAMkgAYEOmHBSQsSUHKvSfbmxULaysmNOGIPHpEMujalpPLNzRWXfwHQqwksrFeipEUlTLec"
 # нужно получить список строк: ['AY', 'NOGI', 'P']
 # Решить задачу двумя способами: с помощью re и без.
@@ -83,7 +83,7 @@ i = 0
 output_sym(line_2, az_lst, some_lst)
 
 while len(some_lst) > i:
-    # находим в списке индекс элемента состоящего из символов в верхнем регистре
+    # находим в списке положение первого символа элемента состоящего из символов в верхнем регистре
     j = line_2.find(some_lst[i])
     # находим длину элемента
     len_up_lit = len(some_lst[i])
@@ -97,7 +97,7 @@ while len(some_lst) > i:
     if low_lit.islower() & up_lit.isupper():
         result_2.append(some_lst[i])
     i += 1
-
+# удаляем пустые строки
 result_2 = [el for el in result_2 if el != '']
 
 print('Символы в нижнем регистре ПРИ помоще re -', result_re)
@@ -110,3 +110,50 @@ print('\n', 'Задание-3:\n'.center(55))
 # 2500-значное произвольное число.
 # Найдите и выведите самую длинную последовательность одинаковых цифр
 # в вышезаполненном файле.
+import random
+import os
+
+path = os.path.join('', 'some.txt')
+
+string = ''
+lst = []
+
+my_file = open("some.txt", "w")
+
+while len(lst) < 2500:
+    for _ in range(500):
+        lst.append(random.randint(0, 9))
+for el in lst:
+    string = string + str(el)
+
+my_file.write(string)
+my_file.close()
+
+num_from_file = 0
+repeat = 1
+repeat_lst = []
+pos_lst = []
+
+with open(path, 'r', encoding='UTF-8') as f:
+    for el in f:
+        num_from_file = el
+# ищем в строке все одинковые последовательности
+for i in range(1, 2500):
+        if num_from_file[i] == num_from_file[i-1]:
+            repeat += 1
+        else:
+            if repeat > 1:
+                # длины одинаковых последовательностей и их позиции заносим в списки
+                repeat_lst.append(repeat)
+                pos_lst.append(i)
+            repeat = 1
+# находим максимальное количество повторов
+max_rep = max(repeat_lst)
+# выводим самую длинную последовательность одинаковых цифр
+for i in range(0, len(repeat_lst)):
+    if repeat_lst[i] == max_rep:
+        print(num_from_file[pos_lst[i] - repeat_lst[i]:pos_lst[i]])
+
+
+
+
