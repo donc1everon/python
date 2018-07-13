@@ -1,6 +1,7 @@
 ﻿# Задание-1:
 # Матрицы в питоне реализуются в виде вложенных списков:
 # Пример. Дано:
+
 matrix = [[1, 0, 8],
           [3, 4, 1],
           [0, 4, 2]]
@@ -12,7 +13,11 @@ matrix = [[1, 0, 8],
 #                  [8, 1, 2]]
 
 # Суть сложности hard: Решите задачу в одну строку
+print("rotate_matrix = ")
+rotate_matrix = list(map(print, [list(i) for i in zip(*matrix)]))
 
+
+print('\n')
 # Задание-2:
 # Найдите наибольшее произведение пяти последовательных цифр в 1000-значном числе.
 # Выведите произведение и индекс смещения первого числа последовательных 5-ти цифр.
@@ -39,6 +44,28 @@ number = """
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450"""
 
+num_lst = []
+summ_max = 0
+for num in number:
+    if num != '\n':
+        num_lst.append(int(num))
+
+last_5 = len(num_lst) - 4
+
+for i in range(0, last_5):
+    summ = 1
+    n = 0
+    while n < 5:
+        summ = summ * num_lst[i+n]
+        n += 1
+        if summ > summ_max:
+            summ_max = summ
+            offset_i = i
+
+print(f"Наибольшее произведение пяти последовательных цифр = {summ_max} \n"
+      f"Индекс смещения первого числа = {offset_i}")
+
+print('\n')
 # Задание-3 (Ферзи):
 # Известно, что на доске 8×8 можно расставить 8 ферзей так, чтобы они не били
 # друг друга. Вам дана расстановка 8 ферзей на доске.
@@ -46,3 +73,45 @@ number = """
 # Программа получает на вход восемь пар чисел,
 # каждое число от 1 до 8 — координаты 8 ферзей.
 # Если ферзи не бьют друг друга, выведите слово NO, иначе выведите YES.
+import copy
+lst_coord = []
+x_i = 0
+y_i = 1
+
+lst_coord = [[1, 3], [2, 7], [3, 2], [4, 8], [5, 5], [6, 1], [7, 4], [8, 6]]    # NO
+lst_coord_2 = [[3, 7], [2, 7], [3, 2], [4, 8], [5, 6], [6, 1], [7, 3], [8, 5]]  # YES
+# def enter_coor(lst):
+#     n = 1
+#     while len(lst) < 8:
+#         x = int(input(f'Ввведите координату от 1 до 8 для х{n}: '))
+#         y = int(input(f'Ввведите координату от 1 до 8 для y{n}: '))
+#         lst.append([x, y])
+#         n += 1
+
+# получаем координаты 8 ферзей
+# enter_coor(lst_coord)
+
+def check_hit(lst, coord_xi, coord_yi):
+    lst_coord_copy = copy.deepcopy(lst)
+    for ev in lst_coord_copy:
+        repeat = 0
+        j = 0
+        while j < 8:
+            x1 = ev[coord_xi]
+            x2 = lst[j][coord_xi]
+            y1 = ev[coord_yi]
+            y2 = lst[j][coord_yi]
+            # проверка не совпадают ли линии по х или у или диагонали ферзей
+            if (x1 == x2) | (y1 == y2) | (abs(x1 - x2) == abs(y1 - y2)):
+                repeat += 1
+            j += 1
+        lst_coord_copy.remove(ev)
+        if repeat > 1:
+             return 'YES'
+    return 'NO'
+
+print('При растоновке №1, ферзи бьют друг друга -', check_hit(lst_coord, x_i, y_i))
+print('При растоновке №2, ферзи бьют друг друга -', check_hit(lst_coord_2, x_i, y_i))
+
+
+
