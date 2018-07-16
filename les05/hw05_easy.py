@@ -7,7 +7,7 @@ import sys
 import shutil
 print('sys.argv = ', sys.argv)
 
-def make_dir():
+def make_dir(dir_name):
     if not dir_name:
         print("Необходимо указать имя директории вторым параметром")
         return
@@ -21,7 +21,7 @@ def make_dir():
             print('директория {} уже существует'.format(dir_name_i))
         dir_name_i = dir_name
 
-def del_dir():
+def del_dir(dir_name):
     if not dir_name:
         print("Необходимо указать имя директории вторым параметром")
         return
@@ -53,25 +53,3 @@ def list_dir():
 
 def copy_file():
     shutil.copyfile(sys.argv[0], 'copy_' + sys.argv[0])
-
-
-param = {
-    'mkdir': make_dir,
-    'rmdir': del_dir,
-    'lsdir': list_dir,
-    'cpfile': copy_file,
-}
-
-try:
-    dir_name = sys.argv[2]
-except IndexError:
-    dir_name = None
-try:
-    key = sys.argv[1]
-except IndexError:
-    key = None
-if key:
-    if param.get(key):
-        param[key]()
-    else:
-        print("Задан неверный ключ")
