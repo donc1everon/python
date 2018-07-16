@@ -11,29 +11,33 @@ def make_dir(dir_name):
     if not dir_name:
         print("Необходимо указать имя директории вторым параметром")
         return
+    try:
+        os.mkdir(dir_name)
+        print('директория {} создана'.format(dir_name))
+    except FileExistsError:
+        print('директория {} уже существует'.format(dir_name))
+
+def make_n_dir(dir_name):
     for i in range(1, 10):
         dir_name_i = dir_name + '_' + str(i)
-        dir_path = os.path.join('.', dir_name_i)
-        try:
-            os.mkdir(dir_path)
-            print('директория {} создана'.format(dir_name_i))
-        except FileExistsError:
-            print('директория {} уже существует'.format(dir_name_i))
-        dir_name_i = dir_name
+        make_dir(dir_name_i)
+    dir_name_i = ''
 
 def del_dir(dir_name):
     if not dir_name:
         print("Необходимо указать имя директории вторым параметром")
         return
+    try:
+        os.rmdir(dir_name)
+        print('директория {} удалена'.format(dir_name))
+    except FileNotFoundError:
+        print('директории {} уже не существует'.format(dir_name))
+
+def del_n_dir(dir_name):
     for i in range(1, 10):
         dir_name_i = dir_name + '_' + str(i)
-        dir_path = os.path.join('.', dir_name_i)
-        try:
-            os.rmdir(dir_path)
-            print('директория {} удалена'.format(dir_name_i))
-        except FileNotFoundError:
-            print('директории {} уже не существует'.format(dir_name_i))
-        dir_name_i = dir_name
+        del_dir(dir_name_i)
+    dir_name_i = ''
 
 # Задача-2:
 # Напишите скрипт, отображающий папки текущей директории.

@@ -1,8 +1,8 @@
-import copy_hw05_easy as hw
+import hw05_easy as hw
 
 param = {
-    'mkdir': hw.make_dir,
-    'rmdir': hw.del_dir,
+    'mkdir': hw.make_n_dir,
+    'rmdir': hw.del_n_dir,
     'lsdir': hw.list_dir,
     'cpfile': hw.copy_file,
 }
