@@ -7,6 +7,7 @@ import sys
 import shutil
 print('sys.argv = ', sys.argv)
 
+
 def make_dir(dir_name):
     if not dir_name:
         print("Необходимо указать имя директории вторым параметром")
@@ -17,11 +18,13 @@ def make_dir(dir_name):
     except FileExistsError:
         print('директория {} уже существует'.format(dir_name))
 
+
 def make_n_dir(dir_name):
     for i in range(1, 10):
         dir_name_i = dir_name + '_' + str(i)
         make_dir(dir_name_i)
     dir_name_i = ''
+
 
 def del_dir(dir_name):
     if not dir_name:
@@ -33,6 +36,7 @@ def del_dir(dir_name):
     except FileNotFoundError:
         print('директории {} уже не существует'.format(dir_name))
 
+
 def del_n_dir(dir_name):
     for i in range(1, 10):
         dir_name_i = dir_name + '_' + str(i)
@@ -42,10 +46,11 @@ def del_n_dir(dir_name):
 # Задача-2:
 # Напишите скрипт, отображающий папки текущей директории.
 
+
 def list_dir():
-    list = os.listdir()
+    list_1 = os.listdir()
     dir_n = 0
-    for i in list:
+    for i in list_1:
         if os.path.isdir(i):
             print(i)
             dir_n += 1
@@ -55,5 +60,7 @@ def list_dir():
 # Задача-3:
 # Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.
 
+
 def copy_file():
     shutil.copyfile(sys.argv[0], 'copy_' + sys.argv[0])
+    print(f"Файл {sys.argv[0]} успешно скопирован")
