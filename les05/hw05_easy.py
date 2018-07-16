@@ -2,9 +2,76 @@
 # Напишите скрипт, создающий директории dir_1 - dir_9 в папке,
 # из которой запущен данный скрипт.
 # И второй скрипт, удаляющий эти папки.
+import os
+import sys
+import shutil
+print('sys.argv = ', sys.argv)
+
+def make_dir():
+    if not dir_name:
+        print("Необходимо указать имя директории вторым параметром")
+        return
+    for i in range(1, 10):
+        dir_name_i = dir_name + '_' + str(i)
+        dir_path = os.path.join('.', dir_name_i)
+        try:
+            os.mkdir(dir_path)
+            print('директория {} создана'.format(dir_name_i))
+        except FileExistsError:
+            print('директория {} уже существует'.format(dir_name_i))
+        dir_name_i = dir_name
+
+def del_dir():
+    if not dir_name:
+        print("Необходимо указать имя директории вторым параметром")
+        return
+    for i in range(1, 10):
+        dir_name_i = dir_name + '_' + str(i)
+        dir_path = os.path.join('.', dir_name_i)
+        try:
+            os.rmdir(dir_path)
+            print('директория {} удалена'.format(dir_name_i))
+        except FileNotFoundError:
+            print('директории {} уже не существует'.format(dir_name_i))
+        dir_name_i = dir_name
 
 # Задача-2:
 # Напишите скрипт, отображающий папки текущей директории.
 
+def list_dir():
+    list = os.listdir()
+    dir_n = 0
+    for i in list:
+        if os.path.isdir(i):
+            print(i)
+            dir_n += 1
+    if dir_n == 0:
+        print('Папок в текущей директории нет!')
+
 # Задача-3:
 # Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.
+
+def copy_file():
+    shutil.copyfile(sys.argv[0], 'copy_' + sys.argv[0])
+
+
+param = {
+    'mkdir': make_dir,
+    'rmdir': del_dir,
+    'lsdir': list_dir,
+    'cpfile': copy_file,
+}
+
+try:
+    dir_name = sys.argv[2]
+except IndexError:
+    dir_name = None
+try:
+    key = sys.argv[1]
+except IndexError:
+    key = None
+if key:
+    if param.get(key):
+        param[key]()
+    else:
+        print("Задан неверный ключ")
