@@ -4,9 +4,9 @@ import math
 
 class Triangle:
     def __init__(self, point_a, point_b, point_c):
-        self.AB = round(math.sqrt(abs((point_b[0] - point_a[0]) ^ 2 + (point_b[1] - point_a[1]) ^ 2)), 2)
-        self.BC = round(math.sqrt(abs((point_c[0] - point_b[0]) ^ 2 + (point_c[1] - point_b[1]) ^ 2)), 2)
-        self.CA = round(math.sqrt(abs((point_a[0] - point_c[0]) ^ 2 + (point_a[1] - point_c[1]) ^ 2)), 2)
+        self.AB = round(math.sqrt((point_b[0] - point_a[0]) ** 2 + (point_b[1] - point_a[1]) ** 2), 2)
+        self.BC = round(math.sqrt((point_c[0] - point_b[0]) ** 2 + (point_c[1] - point_b[1]) ** 2), 2)
+        self.CA = round(math.sqrt((point_a[0] - point_c[0]) ** 2 + (point_a[1] - point_c[1]) ** 2), 2)
 
     def find_perimetr(self):
         self.perimetr = (self.AB + self.BC + self.CA)
