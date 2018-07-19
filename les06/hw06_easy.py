@@ -23,7 +23,7 @@ class Triangle:
         return self.height
 
 
-triangle1 = Triangle((1, 2), (3, 3), (2, 5))
+triangle1 = Triangle((1, 2), (3, 3), (2, 6))
 print(triangle1.AB, triangle1.BC, triangle1.CA, triangle1.find_square(), triangle1.find_height(),
       triangle1.find_perimetr())
 
