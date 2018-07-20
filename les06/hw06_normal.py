@@ -56,9 +56,7 @@ class School:
     # Получаем ФИО родителей указанного ученика
     def my_parent(self, name):
         for cla in self.classes:
-            print(cla)
             for student in cla.students:
-                print(student)
                 if student.name == name:
                     student.my_parent()
 
