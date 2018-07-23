@@ -10,7 +10,7 @@ class Game():
         self.comp_card = Card('comp')
         self.game_step()
 
-    def __repr__(self):
+    def __str__(self):
         return f"{self.casks.get_cask()}\n{self.user_card}\n{self.comp_card}"
 
     def game_step(self):
@@ -84,7 +84,7 @@ class Card:
                                     break
                     q += 1
 
-    def __repr__(self):
+    def __str__(self):
         if self.gamer == 'user':
             header = f"{'-' * 6} Карточка пользователя {'-' * 6}"
         elif self.gamer == 'comp':
